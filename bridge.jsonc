@@ -1,0 +1,67 @@
+{
+    "reverse": {
+        "bridges": [
+            {
+                "tag": "bridge",
+                "domain": "example.local"
+            }
+        ]
+    },
+    "outbounds": [
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "connect.example.com",
+                        "port": 443,
+                        "users": [
+                            {
+                                "id": "", //your uuid, as in portal
+                                "encryption": "none"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "tag": "outgoing",
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "serverName": "connect.example.com",
+                    "allowInsecure": false
+                }
+            }
+        },
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ],
+    "routing": {
+        "rules": [
+            {
+                "type": "field",
+                "inboundTag": [
+                    "bridge"
+                ],
+                "domain": [
+                    "full:example.local"
+                ],
+                "outboundTag": "outgoing"
+            },
+            {
+                "type": "field",
+                "inboundTag": [
+                    "bridge"
+                ],
+                "outboundTag": "direct"
+            }
+        ]
+    }
+}

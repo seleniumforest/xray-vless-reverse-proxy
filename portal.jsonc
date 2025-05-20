@@ -1,0 +1,136 @@
+{
+    "reverse": {
+        "portals": [
+            {
+                "tag": "portal",
+                "domain": "example.local"
+            }
+        ]
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": 8443,
+            "protocol": "vless",
+            "tag": "incoming",
+            "settings": {
+                "clients": [
+                    {
+                        "id": ""
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "certificates": [
+                        {
+                            "certificateFile": "/etc/letsencrypt/live/example.com/fullchain.pem",
+                            "keyFile": "/etc/letsencrypt/live/example.com/privkey.pem"
+                        }
+                    ]
+                }
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls",
+                    "quic"
+                ]
+            }
+        },
+        {
+            "tag": "qbittorrent-ui",
+            "port": 8080,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "192.168.88.246",
+                "port": 8080,
+                "network": "tcp"
+            }
+        },
+        {
+            "tag": "dufs",
+            "port": 5000,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "192.168.88.246",
+                "port": 5000,
+                "network": "tcp"
+            }
+        },
+        {
+            "tag": "filebrowser",
+            "port": 5001,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "192.168.88.246",
+                "port": 5001,
+                "network": "tcp"
+            }
+        },
+        {
+            "tag": "fb-main",
+            "port": 5002,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "192.168.88.243",
+                "port": 5002,
+                "network": "tcp"
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ],
+    "routing": {
+        "rules": [
+            {
+                "type": "field",
+                "inboundTag": [
+                    "incoming"
+                ],
+                "outboundTag": "portal"
+            },
+            {
+                "type": "field",
+                "inboundTag": [
+                    "qbittorrent-ui"
+                ],
+                "outboundTag": "portal"
+            },
+            {
+                "type": "field",
+                "inboundTag": [
+                    "dufs"
+                ],
+                "outboundTag": "portal"
+            },
+            {
+                "type": "field",
+                "inboundTag": [
+                    "filebrowser"
+                ],
+                "outboundTag": "portal"
+            },
+            {
+                "type": "field",
+                "inboundTag": [
+                    "fb-main"
+                ],
+                "outboundTag": "portal"
+            }
+        ],
+        "domainStrategy": "AsIs"
+    }
+}
