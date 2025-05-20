@@ -1,4 +1,4 @@
-Xray config example: reverse proxy with vless, nginx, subdomains. Used for bridging my self-hosted services under NAT to public. 
+Xray config example: reverse proxy with vless, nginx, subdomains. Used for bridging my self-hosted services under NAT to public. Listens only 443 from outside
 
 ## file paths:
 
