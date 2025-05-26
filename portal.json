@@ -24,11 +24,12 @@
             "streamSettings": {
                 "network": "tcp",
                 "security": "tls",
+		"sockopt": { "acceptProxyProtocol": true },
                 "tlsSettings": {
                     "certificates": [
                         {
-                            "certificateFile": "/etc/letsencrypt/live/example.com/fullchain.pem",
-                            "keyFile": "/etc/letsencrypt/live/example.com/privkey.pem"
+                            "certificateFile": "/etc/letsencrypt/live/mydomain.com/fullchain.pem",
+                            "keyFile": "/etc/letsencrypt/live/mydomain.com/privkey.pem"
                         }
                     ]
                 }

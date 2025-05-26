@@ -13,11 +13,11 @@
             "settings": {
                 "vnext": [
                     {
-                        "address": "connect.example.com",
+                        "address": "connect.mydomain.com",
                         "port": 443,
                         "users": [
                             {
-                                "id": "", //your uuid, as in portal
+                                "id": "",
                                 "encryption": "none"
                             }
                         ]
@@ -29,7 +29,7 @@
                 "network": "tcp",
                 "security": "tls",
                 "tlsSettings": {
-                    "serverName": "connect.example.com",
+                    "serverName": "connect.mydomain.com",
                     "allowInsecure": false
                 }
             }

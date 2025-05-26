@@ -1,0 +1,10 @@
+[nginx-badbasic]
+enabled  = true
+port     = http,https
+filter   = nginx-badbasic
+logpath  = /var/log/nginx/error.log
+maxretry = 3
+findtime = 60
+bantime  = 300
+ignoreip = 127.0.0.1/8
+backend = auto
